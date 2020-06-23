@@ -3,6 +3,11 @@ version: '3.6'
 services:
   influxdb:
     image: influxdb:1.8
+    healthcheck:
+      test: "curl -f http://localhost:8086/ping"
+      interval: 3s
+      timeout: 10s
+      retries: 5
     volumes: 
       - influxdb:/var/lib/influxdb
 
